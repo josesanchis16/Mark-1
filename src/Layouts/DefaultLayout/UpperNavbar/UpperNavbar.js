@@ -49,7 +49,7 @@ const UpperNavbar = ({ currentWidth, titleOpacity }) => {
     return (
         <div
             className="d-flex justify-content-between align-items-center bg-light"
-            style={{ height: 80 }}>
+            style={{ height: 80}}>
             <div className="d-flex justify-content-center align-items-center">
                 <div>
                     {currentWidth < GlobalConfig.breakpointWidth &&

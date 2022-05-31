@@ -1,4 +1,4 @@
-import GeneralLayout from "../../../Layouts/InnerLayouts/CardLayout";
+import GeneralLayout from "../../../Layouts/InnerLayouts/GeneralLayout";
 
 
 const CardsView = () => {

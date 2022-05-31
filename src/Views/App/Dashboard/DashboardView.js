@@ -1,5 +1,5 @@
 import useScript from "../../../Hooks/useScript";
-import GeneralLayout from "../../../Layouts/InnerLayouts/CardLayout";
+import GeneralLayout from "../../../Layouts/InnerLayouts/GeneralLayout";
 
 
 const DashboardView = () => {

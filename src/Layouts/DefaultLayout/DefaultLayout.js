@@ -87,12 +87,12 @@ const DefaultLayout = ({ children }) => {
                         offset: currentWidth > 1500 ? currentWidth > 2000 ? 1 : 2 : 3
                     }}
                     className="px-0 bg-light overflow-hidden">
-                    <div style={{ zIndex: 10 }}>
+                    <div className="sticky-top" style={{ zIndex: 10, boxShadow: '35px 1px 10px 0 #dedede' }}>
                         <UpperNavbar titleOpacity={titleOpacity} currentWidth={currentWidth} />
                     </div>
                     <div
                         id="mainContent"
-                        className="bg-white overflow-auto"
+                        className="bg-white overflow-auto px-4"
                         style={{ zIndex: 9, height: currentHeight - 80, borderTopLeftRadius: currentWidth < BREAKPOINT ? 0 : 35, boxShadow: 'inset 1px 1px 10px 0 #ddd' }}>
                         <Suspense fallback={(<CustomSuspense />)}>
                             <div style={{ height: 'calc(1000vh - 80px - 10px)' }}>

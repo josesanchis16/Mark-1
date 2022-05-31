@@ -1,0 +1,73 @@
+
+.mark__mainSidebar {
+    height: 100%;
+    overflow: auto;
+  }
+
+.mark__mainNavItems { 
+    height: calc(100vh);
+}
+
+.mark__accordion_item {
+    background-color: transparent;
+  }
+  
+  .mark__custom_header .accordion-button{
+    margin-top: 5px;
+    padding: 10px 15px;
+    box-shadow: unset;
+    transition: 0.2s;
+    border-radius: 5px !important;
+    background-color: transparent;
+  }
+  
+  .mark__custom_header .accordion-button:hover{
+    box-shadow: 0px 0px 5px 1px #99999950;
+  }
+  
+  .mark__custom_header .accordion-button:not(.collapsed) {
+      color: black;
+      border-bottom: 1px solid #99999950;
+  }
+  
+  .mark__custom_header .accordion-button:not(.collapsed)::after {
+      color: black;
+  }
+  
+  .mark__custom_button { 
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition:0.2s;
+  }
+  
+  .mark__custom_button > a {
+    text-decoration: none;
+    color: black
+  }
+  
+  .mark__custom_button > a.active {
+    color: white
+  }
+  
+  .mark__custom_button:first-child{
+    margin-top: 2px;
+  }
+  
+  .mark__custom_button:last-child{
+    margin-bottom: 2px;
+  }
+  
+  .mark__custom_button:hover { 
+    box-shadow: 0px 0px 5px 1px #99999950;
+  }
+  
+  .mark__custom_collapse {
+    border-bottom-left-radius:7px;
+    border-bottom-right-radius:7px;
+  }

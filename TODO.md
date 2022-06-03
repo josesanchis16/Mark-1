@@ -10,3 +10,9 @@
 ## Issues
  - [ ] Not redirecting to any route when path is "/app". That should to redirect to the first element in the main sidebar 
  - [ ] Main title (Mark 1) in sidebar, should to redirect to the default Page (normally first item in the sidebar)
+
+ ## Ideas
+  - Add breadcrumbs in GeneralLayout
+  - Add remember me in Login form
+  - Add customization options in settings
+  - Add email section

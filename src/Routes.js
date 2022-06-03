@@ -7,77 +7,33 @@ import NotFound from './Views/404';
 import AppView from './Views/App/AppView';
 import AuthView from './Views/Auth/AuthView';
 
-const DefaultRoute = {
-    path: '/',
-    exact: false,
-    layout: null,
-    component: () => (<Redirect to={LOGIN_PATH} />)
-}
+const getRoute = (path, component, layout = null, exact = false) => ({ path, component, exact, layout });
 
-const NotFoundRoute = {
-    path: NOT_FOUND_PATH,
-    exact: false,
-    layout: null,
-    component: () => (<NotFound />)
-}
+const DefaultRoute = getRoute('/', () => (<Redirect to={LOGIN_PATH} />));
+const NotFoundRoute = getRoute(NOT_FOUND_PATH, NotFound);
 
 //Auth routes
-const AuthPathRoute = {
-    path: AUTH_PATH,
-    exact: false,
-    layout: null,
-    component: AuthView,
-}
+const AuthPathRoute = getRoute(AUTH_PATH, AuthView);
 
 const LoginView = React.lazy(() => import('./Views/Auth/Login/LoginView'));
-const LoginRoute = {
-    path: LOGIN_PATH,
-    exact: true,
-    layout: AuthLayout,
-    component: LoginView
-}
+const LoginRoute = getRoute(LOGIN_PATH, LoginView, AuthLayout);
 
 //App
-const AppPathRoute = {
-    path: APP_PATH,
-    exact: false,
-    component: AppView
-}
+const AppPathRoute = getRoute(APP_PATH, AppView);
 
 const DashboardView = React.lazy(() => import('./Views/App/Dashboard/DashboardView'));
-const DashboardRoute = {
-    path: SECTION_1_PATH,
-    exact: true,
-    layout: DefaultLayout,
-    component: DashboardView,
-}
+const DashboardRoute = getRoute(SECTION_1_PATH, DashboardView, DefaultLayout, true);
 
 const ColorsView = React.lazy(() => import('./Views/App/Colors/ColorsView'));
-const ColorsRoute = {
-    path: SECTION_2_PATH,
-    exact: true,
-    layout: DefaultLayout,
-    component: ColorsView,
-}
+const ColorsRoute = getRoute(SECTION_2_PATH, ColorsView, DefaultLayout, true);
 
 const BreadcrumbView = React.lazy(() => import('./Views/App/Breadcrumb/BreadcrumbView'));
-const BreadcrumbRoute = {
-    path: SECTION_3_PATH,
-    exact: true,
-    layout: DefaultLayout,
-    component: BreadcrumbView
-}
+const BreadcrumbRoute = getRoute(SECTION_3_PATH, BreadcrumbView, DefaultLayout, true);
 
 const CardsView = React.lazy(() => import('./Views/App/Cards/CardsView'));
-const CardsRoute = {
-    path: SECTION_4_PATH,
-    exact: true,
-    layout: DefaultLayout,
-    component: CardsView
-}
+const CardsRoute = getRoute(SECTION_4_PATH, CardsView, DefaultLayout, true);
 
 //Exports
-
 export const AuthRoutes = [
     LoginRoute,
     NotFoundRoute,

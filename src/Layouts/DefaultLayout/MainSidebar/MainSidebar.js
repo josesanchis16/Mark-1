@@ -1,4 +1,4 @@
-import { mdiClose } from '@mdi/js';
+import { mdiAccount, mdiBell, mdiClose, mdiMessage } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { useEffect, useState } from "react";
 import { Button, Navbar } from "react-bootstrap";
@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import { GlobalConfig } from '../../../Configuration';
 import { getToggleSideBarAction } from '../../../Redux/Reducers/Config/Actions';
 import store from '../../../Redux/store';
+import { showModal } from '../../../Utils/GeneralFunctions';
+import { ModalNames } from '../../../Utils/ModalNames';
 import NavSection from "./NavSection/NavSection";
 
 const MainSidebar = ({ currentWidth }) => {
@@ -15,18 +17,24 @@ const MainSidebar = ({ currentWidth }) => {
 
     useEffect(() => {
         setPathname(history.location.pathname)
-        history.listen(e => {
+        const historyListener = history.listen(e => {
             const { pathname } = e;
             setPathname(pathname);
         })
+        return historyListener;
     }, [])
 
     const handleCloseClick = () => {
         store.dispatch(getToggleSideBarAction(false));
     }
 
+    const openProfileModal = () => {
+        store.dispatch(getToggleSideBarAction(false));
+        showModal(ModalNames.ProfileModal);
+    }
+
     return (
-        <div className="overflow-hidden bg-light">
+        <div className="overflow-hidden bg-light h-100">
             {currentWidth < GlobalConfig.breakpointWidth ?
                 <div className='pt-4'>
                     <Navbar.Brand className="mx-2 d-flex justify-content-between align-items-center">
@@ -50,6 +58,30 @@ const MainSidebar = ({ currentWidth }) => {
             <div className="bg-light mt-5 px-2">
                 <NavSection active={pathName} />
             </div>
+
+            {currentWidth < GlobalConfig.breakpointWidth &&
+                <div className='py-3 pb-4 d-flex justify-content-center align-items-center' style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
+                    {/* Messages */}
+                    <div className="mx-2">
+                        <Button variant="outline-secondary" className="border-0">
+                            <Icon path={mdiBell} size="25" />
+                        </Button>
+                    </div>
+
+                    {/* Notifications */}
+                    <div className="mx-2">
+                        <Button variant="outline-secondary" className="border-0">
+                            <Icon path={mdiMessage} size="25" />
+                        </Button>
+                    </div>
+                    {/* Notifications */}
+                    <div className="mx-2">
+                        <Button onClick={openProfileModal} variant="outline-secondary" className="border-0">
+                            <Icon path={mdiAccount} size="25" />
+                        </Button>
+                    </div>
+                </div>
+            }
         </div >
     )
 }

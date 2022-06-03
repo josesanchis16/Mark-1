@@ -17,7 +17,7 @@ const GeneralLayout = ({ children, showBackButton, title = 'This will be the tit
     }, [])
 
     return (
-        <Card className="border-0 mx-2 mt-3 mb-3">
+        <Card id={`mainCard_${id}`} className="border-0 mx-2 mt-3 mb-3">
             {(title || showBackButton || rightSection) &&
                 <Card.Header id={`card-header-${id}`} className="w-100 bg-white d-flex justify-content-between align-items-center bg-white"
                     style={{

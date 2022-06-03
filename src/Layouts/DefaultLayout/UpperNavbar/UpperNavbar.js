@@ -49,16 +49,9 @@ const UpperNavbar = ({ currentWidth, titleOpacity }) => {
     return (
         <div
             className="d-flex justify-content-between align-items-center bg-light"
-            style={{ height: 80}}>
-            <div className="d-flex justify-content-center align-items-center">
-                <div>
-                    {currentWidth < GlobalConfig.breakpointWidth &&
-                        <div className="ps-2 ms-4" onClick={handleOpenMenu}>
-                            <Icon path={mdiMenu} size="20" className="text-muted" />
-                        </div>
-                    }
-                </div>
-                <div className="ms-3 d-flex align-items-center justify-content-center " style={{ opacity: titleOpacity / SCROLL_BREAKPOINT > 1 ? 1 : titleOpacity / SCROLL_BREAKPOINT }} >
+            style={{ height: 80 }}>
+            <div className={`px-4 w-100 d-flex justify-content-between align-items-center `}>
+                <div className="d-flex align-items-center justify-content-center " style={{ opacity: titleOpacity / SCROLL_BREAKPOINT > 1 ? 1 : titleOpacity / SCROLL_BREAKPOINT }} >
                     {showBackButton &&
                         <div className="me-3 cursor-pointer" onClick={() => goBack()}>
                             <Icon path={mdiArrowLeft} size="20" />
@@ -66,36 +59,44 @@ const UpperNavbar = ({ currentWidth, titleOpacity }) => {
                     }
                     <p className="h3 mb-0 text-nowrap">{currentPage}</p>
                 </div>
+                <div>
+                    {currentWidth < GlobalConfig.breakpointWidth &&
+                        <Button variant="outline-secondary" onClick={handleOpenMenu} className="d-flex justify-content-center align-items-center border-0">
+                            <Icon path={mdiMenu} size="20" />
+                        </Button>
+                    }
+                </div>
             </div>
 
-            <div className="p-2 d-flex justify-content-end w-100 align-items-center">
-                {/* Messages */}
-                <div className="mx-2">
-                    <Button variant="outline-secondary" className="border-0">
-                        <Icon path={mdiBell} size="25" />
-                    </Button>
-                </div>
+            {currentWidth >= GlobalConfig.breakpointWidth &&
+                <div className="p-2 d-flex justify-content-end w-100 align-items-center">
+                    {/* Messages */}
+                    <div className="mx-2">
+                        <Button variant="outline-secondary" className="border-0">
+                            <Icon path={mdiBell} size="25" />
+                        </Button>
+                    </div>
 
-                {/* Notifications */}
-                <div className="mx-2">
-                    <Button variant="outline-secondary" className="border-0">
-                        <Icon path={mdiMessage} size="25" />
-                    </Button>
-                </div>
+                    {/* Notifications */}
+                    <div className="mx-2">
+                        <Button variant="outline-secondary" className="border-0">
+                            <Icon path={mdiMessage} size="25" />
+                        </Button>
+                    </div>
 
-                {/* Profile */}
-                <div className="mx-2">
-                    <div
-                        onClick={openProfileModal}
-                        className="btn btn-outline-secondary rounded-lg border-0">
-                        <p className="mb-0">
-                            Jose Sanchis
-                            <Icon path={mdiChevronDown} style={{ marginTop: -2 }} size="20" />
-                        </p>
+                    {/* Profile */}
+                    <div className="mx-2">
+                        <Button
+                            variant="outline-secondary" className="border-0" onClick={openProfileModal}>
+                            <p className="mb-0">
+                                Jose Sanchis
+                                <Icon path={mdiChevronDown} style={{ marginTop: -2 }} size="20" />
+                            </p>
+                        </Button>
                     </div>
                 </div>
-            </div>
-        </div>
+            }
+        </div >
     )
 }
 

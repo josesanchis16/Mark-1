@@ -1,5 +1,6 @@
 import { Suspense, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import CustomSuspense from "../../Components/CustomSuspense/CustomSuspense";
 import { GlobalConfig } from "../../Configuration";
 import ProfileModal from "../../Modal/ProfileModal/ProfileModal";
@@ -11,6 +12,8 @@ import UpperNavbar from "./UpperNavbar/UpperNavbar";
 const BREAKPOINT = GlobalConfig.breakpointWidth;
 
 const DefaultLayout = ({ children }) => {
+
+    const history = useHistory();
 
     const [currentWidth, setCurrentWidth] = useState(0);
     const [currentHeight, setCurrentHeight] = useState(0);
@@ -25,6 +28,17 @@ const DefaultLayout = ({ children }) => {
         return () => {
             divEl.removeEventListener('scroll', handleScroll);
         }
+    }, [])
+
+    useEffect(() => {
+        const historyListener = history.listen(e => {
+            const mainCard = document.getElementById(`mainContent`);
+            mainCard.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+        })
+        return historyListener;
     }, [])
 
     useEffect(() => {
@@ -75,7 +89,7 @@ const DefaultLayout = ({ children }) => {
                         position: currentWidth < BREAKPOINT ? 'absolute' : 'sticky',
                         zIndex: 11,
                         transition: '0.3s',
-                        height: currentWidth < BREAKPOINT ? menuOpened ? '100vh' : '0' : currentHeight,
+                        height: currentWidth < BREAKPOINT ? menuOpened ? '100%' : '0' : currentHeight,
                     }}
                     className="px-0 overflow-hidden"
                     lg={{ span: currentWidth > 1500 ? currentWidth > 2000 ? 1 : 2 : 3 }}>
@@ -84,10 +98,9 @@ const DefaultLayout = ({ children }) => {
                 <Col
                     lg={{
                         span: currentWidth > 1500 ? currentWidth > 2000 ? 11 : 10 : 9,
-                        offset: currentWidth > 1500 ? currentWidth > 2000 ? 1 : 2 : 3
                     }}
                     className="px-0 bg-light overflow-hidden">
-                    <div className="sticky-top" style={{ zIndex: 10, boxShadow: '35px 1px 10px 0 #dedede' }}>
+                    <div className="sticky-top" style={{ zIndex: 10, boxShadow: '30px 1px 10px 0 #dedede' }}>
                         <UpperNavbar titleOpacity={titleOpacity} currentWidth={currentWidth} />
                     </div>
                     <div

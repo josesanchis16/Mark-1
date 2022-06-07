@@ -1,5 +1,6 @@
 # TODO
 ## Tasks
+- [ ] Improve the Auth screens  
 - [ ] Improve CustomLoader component
 - [ ] Create Notification popup
 - [ ] Add more views to see examples:

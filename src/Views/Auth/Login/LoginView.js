@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Card, Container, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { APP_PATH } from '../../../Paths';
 
 const LoginView = () => {
+
+    const { replace } = useHistory();
 
     const [data, setData] = useState({});
     const [errors, setErrors] = useState({});
@@ -11,9 +14,14 @@ const LoginView = () => {
         return data.email && data.password && !errors.password && !errors.email;
     }
 
+    const handleForm = (e) => {
+        e.preventDefault();
+        replace(APP_PATH)
+    }
+
     return (
         <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-            <Form onSubmit={() => { }} style={{ maxWidth: 500 }} className="w-100">
+            <Form onSubmit={handleForm} style={{ maxWidth: 500 }} className="w-100">
                 <Card className="p-4 shadow rounded">
                     <Card.Header className='border-0 bg-white'>
                         <Card.Title as={"h3"} className="fw-normal mb-0">
@@ -38,7 +46,7 @@ const LoginView = () => {
                     </Card.Body>
                     <Card.Footer className="border-0 bg-white">
                         <div className='d-flex justify-content-center align-items-center'>
-                            <Button disabled={!checkForm()} type="submit" variant="outline-secondary" className="border-0">Login</Button>
+                            <Button type="submit" variant="outline-secondary" className="border-0">Login</Button>
                         </div>
                         <div className='w-100 d-flex justify-content-between align-items-center mt-2'>
                             <Link to={''}>Forgot Password</Link>

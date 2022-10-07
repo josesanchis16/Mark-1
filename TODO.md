@@ -8,6 +8,7 @@
   - [ ] [Edit Profile](https://www.behance.net/gallery/88920497/Design-Dashboard-Profile-Page-Travel-Agency)
   - [ ] [Settings](https://i.pinimg.com/originals/83/14/16/831416b781f779ddf60f1724c9885fdd.png)
 - [ ] Add readme.md file
+- [ ] Add footer
 
 ## Issues
  - [ ] Not redirecting to any route when path is "/app". That should to redirect to the first element in the main sidebar 

@@ -5,5 +5,8 @@ export const BASE_PATHS = {
 
 export const GlobalConfig = {
     appName: 'Mark 1',
-    breakpointWidth: 992, //More info: https://getbootstrap.com/docs/5.1/layout/breakpoints/
+
+    //Design
+    navbarHeight: 80,
+    footerHeight: 40,
 }

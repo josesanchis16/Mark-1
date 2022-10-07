@@ -9,8 +9,6 @@ import { equals } from "../../Utils/GeneralFunctions";
 import MainSidebar from "./MainSidebar/MainSidebar";
 import UpperNavbar from "./UpperNavbar/UpperNavbar";
 
-const BREAKPOINT = GlobalConfig.breakpointWidth;
-
 const DefaultLayout = ({ children }) => {
 
     const history = useHistory();
@@ -83,22 +81,18 @@ const DefaultLayout = ({ children }) => {
 
             {/* Content */}
             <Row>
+                <div
+                    className="px-0 position-absolute d-flex d-md-none"
+                    style={{ zIndex: 11, width: '100vw', transition: '0.3s', top: menuOpened ? 0 : '-100vh', height: '100vh' }}>
+                    <MainSidebar currentWidth={currentWidth} />
+                </div>
                 <Col
-                    style={{
-                        top: 0,
-                        position: currentWidth < BREAKPOINT ? 'absolute' : 'sticky',
-                        zIndex: 11,
-                        transition: '0.3s',
-                        height: currentWidth < BREAKPOINT ? menuOpened ? '100%' : '0' : currentHeight,
-                    }}
-                    className="px-0 overflow-hidden"
-                    lg={{ span: currentWidth > 1500 ? currentWidth > 2000 ? 1 : 2 : 3 }}>
+                    style={{ position: 'sticky', zIndex: 11, height: currentHeight }}
+                    className="px-0 overflow-hidden d-md-flex d-none"
+                    xl={2} md={3}>
                     <MainSidebar currentWidth={currentWidth} />
                 </Col>
-                <Col
-                    lg={{
-                        span: currentWidth > 1500 ? currentWidth > 2000 ? 11 : 10 : 9,
-                    }}
+                <Col md={9} xl={10}
                     className="px-0 bg-light overflow-hidden">
                     <div className="sticky-top" style={{ zIndex: 10, boxShadow: '30px 1px 10px 0 #dedede' }}>
                         <UpperNavbar titleOpacity={titleOpacity} currentWidth={currentWidth} />
@@ -106,9 +100,14 @@ const DefaultLayout = ({ children }) => {
                     <div
                         id="mainContent"
                         className="bg-white overflow-auto px-4"
-                        style={{ zIndex: 9, height: currentHeight - 80, borderTopLeftRadius: currentWidth < BREAKPOINT ? 0 : 35, boxShadow: 'inset 1px 1px 10px 0 #ddd' }}>
+                        style={{
+                            zIndex: 9,
+                            height: currentHeight - GlobalConfig.navbarHeight,
+                            borderTopLeftRadius: currentWidth < 768 ? 0 : 35,
+                            boxShadow: 'inset 1px 1px 10px 0 #ddd'
+                        }}>
                         <Suspense fallback={(<CustomSuspense />)}>
-                            <div style={{ height: 'calc(1000vh - 80px - 10px)' }}>
+                            <div style={{ height: `calc(100vh - ${GlobalConfig.navbarHeight}px - 16px)` }}>
                                 {children}
                             </div>
                         </Suspense >

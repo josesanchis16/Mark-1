@@ -4,7 +4,7 @@ const init = {
     currentPath: '',
     previousPath: '',
     currentPageTitle: '',
-    sidebarOpened: true,
+    sidebarOpened: false,
     showBackButton: 's'
 }
 

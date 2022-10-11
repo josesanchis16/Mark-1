@@ -8,7 +8,7 @@
   - [ ] [Edit Profile](https://www.behance.net/gallery/88920497/Design-Dashboard-Profile-Page-Travel-Agency)
   - [ ] [Settings](https://i.pinimg.com/originals/83/14/16/831416b781f779ddf60f1724c9885fdd.png)
 - [ ] Add readme.md file
-- [ ] Add footer
+- [x] __Add footer__
 - [ ] Move **Forgot Password** button outside login box
 
 ## Issues

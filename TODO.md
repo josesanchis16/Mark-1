@@ -9,6 +9,7 @@
   - [ ] [Settings](https://i.pinimg.com/originals/83/14/16/831416b781f779ddf60f1724c9885fdd.png)
 - [ ] Add readme.md file
 - [ ] Add footer
+- [ ] Move **Forgot Password** button outside login box
 
 ## Issues
  - [ ] Not redirecting to any route when path is "/app". That should to redirect to the first element in the main sidebar 

@@ -2,10 +2,11 @@ import { mdiAccount, mdiBell, mdiClose, mdiMessage } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { useEffect, useState } from "react";
 import { Button, Navbar } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { GlobalConfig } from '../../../Configuration';
 import { getToggleSideBarAction } from '../../../Redux/Reducers/Config/Actions';
 import store from '../../../Redux/store';
+import { AppRoutes } from '../../../Routes';
 import { showModal } from '../../../Utils/GeneralFunctions';
 import { ModalNames } from '../../../Utils/ModalNames';
 import NavSection from "./NavSection/NavSection";
@@ -47,7 +48,9 @@ const MainSidebar = ({ currentWidth }) => {
             </div>
             <div className='d-md-flex d-none' style={{ height: GlobalConfig.navbarHeight }}>
                 <Navbar.Brand className="d-flex justify-content-center align-items-center w-100 h-100">
-                    <h1 className="mb-0 h5 text-decoration-none text-muted">{GlobalConfig.appName}</h1>
+                    <Link to={AppRoutes[0].path} className="text-decoration-none">
+                        <h1 className="mb-0 h3 text-decoration-none text-muted">{GlobalConfig.appName}</h1>
+                    </Link>
                 </Navbar.Brand>
             </div>
 

@@ -1,5 +1,6 @@
 import { Route, Switch } from "react-router-dom";
 import { AuthRoutes } from "../../Routes";
+import NotFound from "../404";
 
 const AuthView = () => {
     return (
@@ -20,6 +21,7 @@ const AuthView = () => {
                     />
                 );
             })}
+            <Route path="*" exact={false} component={NotFound} />
         </Switch>
     )
 }

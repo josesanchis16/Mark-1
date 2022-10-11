@@ -21,14 +21,14 @@ const LoginView = () => {
 
     return (
         <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-            <Form onSubmit={handleForm} style={{ maxWidth: 500 }} className="w-100">
-                <Card className="p-4 shadow rounded">
+            <Form onSubmit={handleForm} style={{ maxWidth: 350 }} className="w-100 d-flex flex-column justify-content-center align-items-center">
+                <Card className="p-4 shadow rounded w-100">
                     <Card.Header className='border-0 bg-white'>
                         <Card.Title as={"h3"} className="fw-normal mb-0">
                             Login
                         </Card.Title>
                     </Card.Header>
-                    <Card.Body className="p-4">
+                    <Card.Body className="p-3">
                         <Form.Group controlId='email' className="mb-2">
                             <Form.Label>Email:</Form.Label>
                             <Form.Control
@@ -45,15 +45,15 @@ const LoginView = () => {
                         </Form.Group>
                     </Card.Body>
                     <Card.Footer className="border-0 bg-white">
-                        <div className='d-flex justify-content-center align-items-center'>
-                            <Button type="submit" variant="outline-secondary" className="border-0">Login</Button>
-                        </div>
-                        <div className='w-100 d-flex justify-content-between align-items-center mt-2'>
-                            <Link to={''}>Forgot Password</Link>
-                            <Link to={''}>Create an account</Link>
+                        <div className='d-flex justify-content-end align-items-center'>
+                            <Button type="submit" variant="secondary" className="border-0">Login</Button>
                         </div>
                     </Card.Footer>
                 </Card>
+                <div className='w-100 px-3 d-flex justify-content-between align-items-center mt-2'>
+                    <Link to={''}>Forgot Password</Link>
+                    <Link to={''}>Create account</Link>
+                </div>
             </Form>
         </Container>
     )

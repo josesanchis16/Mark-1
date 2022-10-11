@@ -1,6 +1,6 @@
-import { Redirect, Route, Switch } from "react-router-dom";
-import { AUTH_PATH } from "./Paths";
+import { Route, Switch } from "react-router-dom";
 import { MainRoutes } from "./Routes";
+import NotFound from "./Views/404";
 
 const App = () => {
   return (
@@ -23,7 +23,7 @@ const App = () => {
             />
           );
         })}
-        <Redirect to={AUTH_PATH} />
+        <Route path="*" exact={false} component={NotFound} />
       </Switch>
     </div>
   );

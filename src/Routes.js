@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import AuthLayout from './Layouts/AuthLayout/AuthLayout';
 import DefaultLayout from './Layouts/DefaultLayout/DefaultLayout';
 import { APP_PATH, AUTH_PATH, LOGIN_PATH, NOT_FOUND_PATH, SECTION_1_PATH, SECTION_2_PATH, SECTION_3_PATH, SECTION_4_PATH } from './Paths';
@@ -9,7 +8,7 @@ import AuthView from './Views/Auth/AuthView';
 
 const getRoute = (path, component, layout = null, exact = false) => ({ path, component, exact, layout });
 
-const DefaultRoute = getRoute('/', () => (<Redirect to={LOGIN_PATH} />));
+// const DefaultRoute = getRoute('/', () => (<Redirect to={LOGIN_PATH} />));
 const NotFoundRoute = getRoute(NOT_FOUND_PATH, NotFound);
 
 //Auth routes
@@ -55,6 +54,5 @@ export const MainRoutes = [
     //App
     AppPathRoute,
 
-    DefaultRoute,
     NotFoundRoute,
 ]

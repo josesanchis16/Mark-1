@@ -1,17 +1,12 @@
-import useScript from "../../../Hooks/useScript";
+import CustomSuspense from "../../../Components/CustomSuspense/CustomSuspense";
 import GeneralLayout from "../../../Layouts/InnerLayouts/GeneralLayout";
 
 
 const DashboardView = () => {
 
-    useScript(
-        "http://todonow.josesanchisdev.es/modules/todonow.js",
-        "F1286DBD-123B-4640-A221-F56E184186BF"
-    )
-
     return (
         <GeneralLayout showBackButton title="Dashboard">
-            <div id="main__div__container" guid=""></div>
+            <CustomSuspense />
         </GeneralLayout>
     )
 }

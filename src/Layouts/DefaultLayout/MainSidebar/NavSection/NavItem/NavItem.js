@@ -1,9 +1,13 @@
 import Icon from "@mdi/react";
 import React from 'react';
-const NavItem = ({ item }) => {
-
+import { Button } from "react-bootstrap";
+const NavItem = ({ item, onClick, active }) => {
+    console.log({ active, item: { ...item } });
     return (
-        <div className="text-decoration-none d-flex justify-content-start align-items-center">
+        <Button
+            onClick={() => onClick(item)}
+            variant={item.path && active === item.path ? "secondary" : 'outline-secondary'}
+            className="w-100 border-0 shadow-none d-flex justify-content-start align-items-center">
             <div className="pb-1">
                 <Icon
                     path={item.icon}
@@ -14,7 +18,7 @@ const NavItem = ({ item }) => {
                     {item.title}
                 </p>
             </div>
-        </div>
+        </Button>
     )
 }
 

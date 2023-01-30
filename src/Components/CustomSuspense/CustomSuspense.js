@@ -1,11 +1,9 @@
-import { Spinner } from "react-bootstrap"
+import Loader from "../Loader/Loader"
 
-const CustomSuspense = ({ }) => {
-
+const CustomSuspense = () => {
     return (
-        <div className="d-flex justify-content-center align-items-center flex-column">
-            <Spinner animation="border" />
-            <p className="mb-0">Loading...</p>
+        <div className="p-5 d-flex justify-content-center align-items-center">
+            <Loader />
         </div>
     )
 }

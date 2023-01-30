@@ -59,3 +59,7 @@ body iframe {
 .btn[type="button"]:focus{
   box-shadow: none !important;
 }
+
+.ReactTable{
+  border-radius: 5px;
+}

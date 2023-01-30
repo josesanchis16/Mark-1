@@ -1,6 +1,6 @@
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router";
+import { RECORDS_PATH } from "../../Paths";
 import { AuthRoutes } from "../../Routes";
-import NotFound from "../404";
 
 const AuthView = () => {
     return (
@@ -21,7 +21,8 @@ const AuthView = () => {
                     />
                 );
             })}
-            <Route path="*" exact={false} component={NotFound} />
+            {/* <Route path="*" exact={false} component={NotFound} /> */}
+            <Redirect to={RECORDS_PATH} />
         </Switch>
     )
 }

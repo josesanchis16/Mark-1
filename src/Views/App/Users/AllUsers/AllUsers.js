@@ -1,61 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import CustomTable from '../../../../Components/CustomTable/CustomTable';
-import useMessageAlert from '../../../../Hooks/useMessageAlert';
-import useModalManager from '../../../../Hooks/useModalManager';
-import useRequest from '../../../../Hooks/useRequest';
-import GeneralLayout from '../../../../Layouts/InnerLayouts/GeneralLayout';
-import DeleteUserModal from '../../../../Modal/User/DeleteUserModal/DeleteUserModal';
-import { NEW_USER_PATH } from '../../../../Paths';
-import { Endpoints, FolderName } from '../../../../Utils/Endpoints';
-import { ModalNames } from '../../../../Utils/ModalNames';
-import { UserColumns } from './UsersColumns';
+import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import CustomTable from "../../../../Components/CustomTable/CustomTable";
+import useMessageAlert from "../../../../Hooks/useMessageAlert";
+import useModalManager from "../../../../Hooks/useModalManager";
+import useRequest from "../../../../Hooks/useRequest";
+import GeneralLayout from "../../../../Layouts/InnerLayouts/GeneralLayout";
+import DeleteMachineModal from "../../../../Modal/Machine/DeleteMachineModal/DeleteMachineModal";
+import { NEW_MACHINE_PATH } from "../../../../Paths";
+import { Endpoints, FolderName } from "../../../../Utils/Endpoints";
+import { ModalNames } from "../../../../Utils/ModalNames";
+import { MachinesColumns } from "./AllUsers.Columns";
+
 
 const AllUsers = () => {
 
     const request = useRequest();
 
-    const { email } = useSelector(state => state.User);
+    const { MessageElement, setMessage } = useMessageAlert('allMachinesErrorMessage');
 
-    const { onModalUpdate } = useModalManager(ModalNames.DeleteUserModal);
-    const { MessageElement, setMessage } = useMessageAlert('allUsersErrorMessage');
+    const { onModalUpdate } = useModalManager(ModalNames.DeleteMachineModal);
 
-    const [users, setUsers] = useState([]);
-    const [totalPages, setTotalPages] = useState(1);
+    const [data, setData] = useState([]);
+    const [totalPages, setTotalPages] = useState(0);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => { onModalUpdate('hidden', fetchData) }, [])
-    useEffect(() => { fetchData() }, [])
+    useEffect(() => { fetchData() }, []);
 
-    const fetchData = (page = 0, search = "") => {
-        request('get', Endpoints(FolderName.USER).GET_ALL, { page, search }, true)
+    const fetchData = (page = 0, search = '') => {
+        request('get', Endpoints(FolderName.MACHINES).GET_ALL, { page, search }, true)
             .then(res => {
-                setUsers(res.users);
-                setTotalPages(res.totalPages)
+                setData(res.machines);
+                setTotalPages(res.totalPages);
                 setLoaded(true);
             }).catch(e => setMessage(e, setLoaded))
     }
 
     return (
         <>
-            {/* Modals */}
-            <DeleteUserModal />
+            {/* Modal */}
+            <DeleteMachineModal />
 
             {/* Content */}
             <GeneralLayout
-                title="Usuarios"
-                loaded={loaded}
+                title="Máquinas"
                 ErrorElement={MessageElement}
                 rightSection={(
-                    <Button size="sm" as={Link} to={NEW_USER_PATH}>+ Nuevo Usuario</Button>
+                    <Button size="sm" as={Link} to={NEW_MACHINE_PATH}>+ Nueva máquina</Button>
                 )}>
+
                 <CustomTable
-                    totalPages={totalPages}
                     onEventHandle={fetchData}
-                    data={users}
-                    columns={UserColumns(email)} />
+                    totalPages={totalPages}
+                    data={data}
+                    columns={MachinesColumns()} />
             </GeneralLayout>
         </>
     )
